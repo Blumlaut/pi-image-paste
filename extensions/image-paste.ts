@@ -185,6 +185,11 @@ export default function (pi: ExtensionAPI) {
       }
 
       if (attachedImages.length > 0) {
+        // If the message is image-only, add minimal text so it shows in the fork selector.
+        // pi's getUserMessagesForForking() filters out messages with no text content.
+        if (!remainingText) {
+          remainingText = "📷";
+        }
         return {
           action: "transform",
           text: remainingText,
