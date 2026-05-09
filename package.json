@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Blumlaut/pi-image-paste"
   },
   "pi": {
     "extensions": ["./extensions"]
