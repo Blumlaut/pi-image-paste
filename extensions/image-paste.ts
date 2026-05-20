@@ -185,10 +185,13 @@ export default function (pi: ExtensionAPI) {
       }
 
       if (attachedImages.length > 0) {
-        // If the message is image-only, add minimal text so it shows in the fork selector.
-        // pi's getUserMessagesForForking() filters out messages with no text content.
+        // If the message is image-only, add descriptive text so it shows in the fork selector
+        // and chat history (pi's UserMessageComponent only renders text, not images).
         if (!remainingText) {
-          remainingText = "📷";
+          const imageLabels = lastImageInfo
+            ? [`${lastImageInfo.name} (${lastImageInfo.size})`]
+            : attachedImages.map((_, i) => `image${i > 0 ? i + 1 : ''}`);
+          remainingText = `📷 ${imageLabels.join(", ")}`;
         }
         return {
           action: "transform",
