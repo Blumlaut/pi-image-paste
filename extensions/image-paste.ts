@@ -83,7 +83,7 @@ export default function (pi: ExtensionAPI) {
         imageComponent = new Image(
           base64Data,
           mime,
-          theme as any,
+          { fallbackColor: (s: string) => theme.fg("muted", s) },
           { maxWidthCells: 40, maxHeightCells: 12 },
         );
       } catch {
